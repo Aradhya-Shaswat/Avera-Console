@@ -1,4 +1,3 @@
-import "server-only";
 import {
   pgTable,
   text,
@@ -16,6 +15,30 @@ export const users = pgTable("users", {
   externalId: text("external_id").notNull().unique(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+export const userProfiles = pgTable(
+  "user_profiles",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: text("user_id").notNull().unique(),
+    email: text("email").notNull(),
+    fullName: text("full_name").notNull(),
+    username: text("username").notNull().unique(),
+    avatarUrl: text("avatar_url"),
+    age: integer("age").default(28),
+    weightKg: real("weight_kg").default(72),
+    maxHr: integer("max_hr").default(188),
+    sleepGoalHours: real("sleep_goal_hours").default(8.0),
+    onboardingCompleted: boolean("onboarding_completed").default(false).notNull(),
+    onboardingStep: integer("onboarding_step").default(1).notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (t) => [
+    index("user_profile_user_id_idx").on(t.userId),
+    index("user_profile_username_idx").on(t.username),
+  ]
+);
 
 export const heartRateRecords = pgTable(
   "heart_rate_records",

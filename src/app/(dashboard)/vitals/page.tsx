@@ -17,55 +17,83 @@ export default function VitalsPage() {
       </div>
 
       <div className="flex-1 grid grid-rows-2 overflow-hidden min-h-0">
-        <div className="grid grid-cols-2 md:grid-cols-3 divide-x divide-y divide-border-subtle border-b border-border-subtle overflow-hidden h-full">
-          <MetricReadout
-            label="Heart Rate"
-            value={formatBpm(64)}
-            unit="bpm"
-            quality="excellent"
-            size="md"
-          />
-          <MetricReadout
-            label="HRV (RMSSD)"
-            value={62}
-            unit="ms"
-            quality="good"
-            isEstimate
-            size="md"
-          />
-          <MetricReadout
-            label="Oxygen Saturation (SpO₂)"
-            value={formatPercent(97.8, 1)}
-            unit="%"
-            quality="good"
-            isEstimate
-            size="md"
-          />
-          <MetricReadout
-            label="Skin Temperature"
-            value="36.6"
-            unit="°C"
-            quality="fair"
-            isEstimate
-            size="md"
-          />
-          <MetricReadout
-            label="Respiratory Rate"
-            value="14.2"
-            unit="brpm"
-            quality="fair"
-            isEstimate
-            size="md"
-          />
-          <MetricReadout
-            label="Temperature Deviation"
-            value="-0.1"
-            unit="°C"
-            trend="neutral"
-            trendValue="Baseline 36.7°C"
-            isEstimate
-            size="md"
-          />
+        <div className="golden-ratio-grid border-b border-border-subtle overflow-hidden h-full">
+          <div className="p-6 md:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-border-subtle overflow-hidden">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-mono uppercase tracking-[0.2em] text-muted font-medium">
+                  Current Heart Rate
+                </span>
+                <span className="text-xs font-mono tracking-widest uppercase px-2.5 py-0.5 rounded border border-quality-good/40 text-quality-good">
+                  Resting Rhythm
+                </span>
+              </div>
+
+              <div className="flex items-baseline gap-3 my-2">
+                <span className="text-7xl md:text-8xl lg:text-9xl font-display font-normal tracking-tighter text-foreground leading-none">
+                  {formatBpm(64)}
+                </span>
+                <span className="text-xl font-mono text-muted">bpm</span>
+              </div>
+
+              <div className="text-sm font-mono text-muted mt-2">
+                RESTING BASELINE:{" "}
+                <span className="text-foreground font-semibold font-numeric">
+                  56 bpm
+                </span>{" "}
+                · Signal Confidence 98%
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-border-subtle/80">
+              <p className="text-sm text-foreground/85 leading-relaxed font-sans">
+                Optical photoplethysmography streaming continuously. Autonomic tone remains balanced with zero ectopic beat anomalies detected.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 divide-x divide-y divide-border-subtle h-full overflow-hidden">
+            <MetricReadout
+              label="HRV (RMSSD)"
+              value={62}
+              unit="ms"
+              trend="up"
+              trendValue="+7 ms baseline"
+              quality="good"
+              isEstimate
+              size="md"
+            />
+            <MetricReadout
+              label="Blood Oxygen (SpO₂)"
+              value={formatPercent(97.8, 1)}
+              unit="%"
+              trend="neutral"
+              trendValue="Optimal range"
+              quality="good"
+              isEstimate
+              size="md"
+            />
+            <MetricReadout
+              label="Respiratory Rate"
+              value="14.2"
+              unit="brpm"
+              trend="neutral"
+              trendValue="Steady eupnea"
+              quality="fair"
+              isEstimate
+              size="md"
+            />
+            <MetricReadout
+              label="Skin Temperature"
+              value="36.6"
+              unit="°C"
+              trend="neutral"
+              trendValue="-0.1°C deviation"
+              quality="fair"
+              isEstimate
+              size="md"
+            />
+          </div>
         </div>
 
         <div className="p-6 md:p-8 flex flex-col justify-between overflow-hidden h-full">
@@ -74,7 +102,7 @@ export default function VitalsPage() {
               Continuous Pulse History · Last 12h
             </span>
             <span className="text-xs font-mono text-muted">
-              SAMPLING INTERVAL 1 MINUTE
+              MIN 52 · PEAK 148 BPM
             </span>
           </div>
           <div className="flex-1 w-full min-h-0">
