@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-bone: #F4F2EC;
+  --color-graphite: #191A18;
+  --color-sage: #879783;
+  --color-brass: #C7AD79;
+  --color-muted: #8F9089;
+
+  --color-background: #F4F2EC;
+  --color-foreground: #191A18;
+  --color-surface: #EDEAE2;
+  --color-surface-raised: #E8E4DA;
+  --color-border: #D8D4C8;
+  --color-border-subtle: rgba(25, 26, 24, 0.08);
+
+  --color-primary: #191A18;
+  --color-primary-foreground: #F4F2EC;
+  --color-secondary: #879783;
+  --color-secondary-foreground: #F4F2EC;
+  --color-accent: #C7AD79;
+  --color-accent-foreground: #191A18;
+  --color-destructive: #B94A3A;
+  --color-destructive-foreground: #F4F2EC;
+
+  --color-card: transparent;
+  --color-card-foreground: #191A18;
+  --color-popover: #EDEAE2;
+  --color-popover-foreground: #191A18;
+  --color-input: #D8D4C8;
+  --color-ring: #C7AD79;
+
+  --color-metric-hr: #C7AD79;
+  --color-metric-hrv: #879783;
+  --color-metric-spo2: #7A9BB5;
+  --color-metric-temp: #B5927A;
+  --color-metric-rr: #9B87A3;
+  --color-metric-recovery: #6B9E7A;
+  --color-metric-strain: #C7AD79;
+  --color-metric-sleep: #7A8EB5;
+
+  --color-sim-badge: #C7AD79;
+  --color-quality-good: #6B9E7A;
+  --color-quality-fair: #C7AD79;
+  --color-quality-poor: #B94A3A;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: "Libre Caslon Display", "Libre Caslon Text", "Georgia", serif;
+  --font-serif: "Libre Caslon Display", "Georgia", serif;
+
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.375rem;
+
+  --ease-golden: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark {
+  --color-background: #191A18;
+  --color-foreground: #F4F2EC;
+  --color-surface: #1E1F1C;
+  --color-surface-raised: #242521;
+  --color-border: #2E2F2C;
+  --color-border-subtle: rgba(244, 242, 236, 0.08);
+
+  --color-primary: #F4F2EC;
+  --color-primary-foreground: #191A18;
+  --color-secondary: #879783;
+  --color-secondary-foreground: #191A18;
+  --color-accent: #C7AD79;
+  --color-accent-foreground: #191A18;
+
+  --color-card: transparent;
+  --color-card-foreground: #F4F2EC;
+  --color-popover: #1E1F1C;
+  --color-popover-foreground: #F4F2EC;
+  --color-input: #2E2F2C;
+  --color-ring: #C7AD79;
+}
+
+*, *::before, *::after {
+  border-color: var(--color-border);
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+html {
+  font-size: 16.5px;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "tnum" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 17.5px;
+  }
+}
+
+@media (min-width: 1536px) {
+  html {
+    font-size: 18.5px;
+  }
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-numeric {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.golden-ratio-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .golden-ratio-grid {
+    grid-template-columns: 1.618fr 1fr;
+  }
+  .golden-ratio-reverse {
+    grid-template-columns: 1fr 1.618fr;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
